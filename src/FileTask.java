@@ -84,6 +84,8 @@ public class FileTask implements Runnable {
         /* Remove numbers and punctuation */
         String punctuationRegex = "[^a-zA-Z ]";
         processedTweet = processedTweet.replaceAll(punctuationRegex," ");
+        /* Remove multiple whitespaces */
+        processedTweet = processedTweet.replaceAll("\\s+", " ");
         return processedTweet;
     }
 
