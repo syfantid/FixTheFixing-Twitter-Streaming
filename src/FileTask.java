@@ -46,12 +46,19 @@ public class FileTask implements Runnable {
     }
 
     public boolean containsBasicWord(String tweetText) {
-        for(String word : basicWords) {
-            String pattern = "\\b"+word+"\\b"; // \b Matches a word boundary where a word character is [a-zA-Z0-9_].
-            Pattern p = Pattern.compile(pattern);
-            Matcher m = p.matcher(tweetText); // Checks if pattern/word appears in tweet text (exact much, no substring)
-            if(m.find()) {
-                return true;
+        for(String words : basicWords) {
+            String[] wordsArray = words.split(" ");
+            for(String word : wordsArray) {
+                if(tweetText.contains(word)) {
+                    return true;
+                }
+                // Exact Match
+                /*String pattern = "\\b" + word + "\\b"; // \b Matches a word boundary where a word character is [a-zA-Z0-9_].
+                Pattern p = Pattern.compile(pattern);
+                Matcher m = p.matcher(tweetText); // Checks if pattern/word appears in tweet text (exact much, no substring)
+                if (m.find()) {
+                    return true;
+                }*/
             }
         }
         return false;
