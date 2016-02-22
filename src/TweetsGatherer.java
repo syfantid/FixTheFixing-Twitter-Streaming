@@ -30,6 +30,7 @@ public class TweetsGatherer {
             System.out.println("***********************************************************************************");
         }
 
+
         try {
             service.submit(new FileTask(tweets)).get(); // Wait til FileTask completes
         } catch (InterruptedException | ExecutionException e) {

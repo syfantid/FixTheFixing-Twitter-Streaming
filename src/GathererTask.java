@@ -43,8 +43,8 @@ public class GathererTask implements Runnable {
             public void onStatus(Status status) {
                 try {
                     tweets.put(new Tweet(status.getText(),status.getCreatedAt(),status.getUser().getName(),status.getHashtagEntities()));
-                } catch (InterruptedException e) {
-                    //Thread.currentThread().interrupt();
+                } catch (InterruptedException e ) {
+                    Thread.currentThread().interrupt();
                     System.out.println("GathererTask Interrupted");
                     e.printStackTrace();
                 }

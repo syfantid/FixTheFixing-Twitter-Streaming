@@ -4,8 +4,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.concurrent.BlockingQueue;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 /**
@@ -48,9 +46,11 @@ public class FileTask implements Runnable {
     public boolean containsBasicWord(String tweetText) {
         for(String words : basicWords) {
             String[] wordsArray = words.split(" ");
+            int total = wordsArray.length;
+            int count = 0;
             for(String word : wordsArray) {
                 if(tweetText.contains(word)) {
-                    return true;
+                    count++;
                 }
                 // Exact Match
                 /*String pattern = "\\b" + word + "\\b"; // \b Matches a word boundary where a word character is [a-zA-Z0-9_].
@@ -59,6 +59,9 @@ public class FileTask implements Runnable {
                 if (m.find()) {
                     return true;
                 }*/
+            }
+            if(count == total) {
+                return true;
             }
         }
         return false;
