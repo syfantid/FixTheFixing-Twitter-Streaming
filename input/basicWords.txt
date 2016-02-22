@@ -1,0 +1,9 @@
+game
+games
+sport
+sports
+match
+score
+event
+events
+outcome

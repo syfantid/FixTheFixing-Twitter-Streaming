@@ -146,6 +146,9 @@ public class FileTask implements Runnable {
                     processTweet(tweet,out);
 
                 } catch (InterruptedException ex) {
+                    System.out.println("************************************************************");
+                    System.out.println("FileTask Interrupted");
+                    System.out.println("************************************************************");
                     break; // GathererTask has completed
                 }
             }

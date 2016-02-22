@@ -20,13 +20,18 @@ public class TweetsGatherer {
         // create thread pool with given size
         ExecutorService service = Executors.newFixedThreadPool(threadCount);
 
+        Future<?> f = service.submit(new GathererTask(tweets));
         try {
-            service.submit(new GathererTask(tweets)).get(2,TimeUnit.MINUTES);
-        } catch (Exception e) {}
+            f.get(1,TimeUnit.MINUTES); // Give specific time to the GathererTask
+        } catch (InterruptedException | ExecutionException | TimeoutException e) {
+            f.cancel(true); // Stop the Gatherer
+            System.out.println("***********************************************************************************");
+            System.out.println("1");
+            System.out.println("***********************************************************************************");
+        }
 
-        // Wait til GathererTask completes
         try {
-            service.submit(new FileTask(tweets)).get();
+            service.submit(new FileTask(tweets)).get(); // Wait til FileTask completes
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
@@ -34,7 +39,7 @@ public class TweetsGatherer {
         service.shutdownNow();
 
        try {
-            service.awaitTermination(365, TimeUnit.DAYS);
+            service.awaitTermination(7, TimeUnit.DAYS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
