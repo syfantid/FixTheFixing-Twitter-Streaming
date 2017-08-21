@@ -1,4 +1,6 @@
-# Fix-the-Fixing
+# Fix-the-Fixing Erasmus+ Collaborative Partnership
+
+Developed as part of an EU project. Includes Java classes to connect with and use Twitter Streming API.
 
 ### 1. Requirements
 
